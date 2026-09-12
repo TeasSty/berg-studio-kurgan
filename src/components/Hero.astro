@@ -11,7 +11,7 @@ import SiteImage from './SiteImage.astro';
   </div>
 
   <div class="hero__inner container">
-    <div class="hero__content">
+    <div class="hero__intro">
       <div class="hero__badge reveal">
         <span class="hero__badge-dot" aria-hidden="true"></span>
         {site.award}
@@ -23,25 +23,6 @@ import SiteImage from './SiteImage.astro';
       </h1>
 
       <p class="hero__tagline reveal reveal-delay-2">{site.tagline}</p>
-
-      <div class="gold-line hero__gold-line reveal reveal-delay-2"></div>
-
-      <p class="hero__quote reveal reveal-delay-3">
-        Эстетика, основанная<br />на медицинском подходе
-      </p>
-
-      <ul class="hero__meta reveal reveal-delay-3" aria-label="Ключевые преимущества">
-        <li>Medical education</li>
-        <li>Safety &amp; precision</li>
-        <li>Personalized approach</li>
-      </ul>
-
-      <div class="hero__actions reveal reveal-delay-4">
-        <a href={site.vkMessage} class="btn btn--primary" target="_blank" rel="noopener noreferrer">
-          Записаться на консультацию
-        </a>
-        <a href="#procedures" class="btn btn--ghost">Исследовать процедуры</a>
-      </div>
     </div>
 
     <div class="hero__visual reveal reveal-delay-2">
@@ -56,6 +37,27 @@ import SiteImage from './SiteImage.astro';
         aspect="4 / 5"
       />
       <div class="hero__visual-frame" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero__details">
+      <div class="gold-line hero__gold-line reveal reveal-delay-2"></div>
+
+      <p class="hero__quote reveal reveal-delay-3">
+        Эстетика, основанная<br />на медицинском подходе
+      </p>
+
+      <ul class="hero__meta reveal reveal-delay-3" aria-label="Ключевые преимущества">
+        <li>Медицинское образование</li>
+        <li>Стерильность и точность</li>
+        <li>Индивидуальный план</li>
+      </ul>
+
+      <div class="hero__actions reveal reveal-delay-4">
+        <a href={site.vkMessage} class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+          Записаться на консультацию
+        </a>
+        <a href="#procedures" class="btn btn--ghost">Исследовать процедуры</a>
+      </div>
     </div>
   </div>
 
@@ -267,10 +269,19 @@ import SiteImage from './SiteImage.astro';
   @media (min-width: 1024px) {
     .hero__inner {
       grid-template-columns: 1fr 0.85fr;
+      grid-template-rows: auto 1fr;
       gap: var(--space-2xl);
     }
 
+    .hero__intro,
+    .hero__details {
+      grid-column: 1;
+    }
+
     .hero__visual {
+      grid-column: 2;
+      grid-row: 1 / -1;
+      align-self: center;
       width: 100%;
       max-width: 480px;
       justify-self: end;
@@ -286,6 +297,24 @@ import SiteImage from './SiteImage.astro';
   }
 
   @media (max-width: 767px) {
+    .hero__visual {
+      width: 100%;
+      max-width: 360px;
+      margin-inline: auto;
+    }
+
+    .hero__badge {
+      margin-bottom: var(--space-md);
+    }
+
+    .hero__title-line {
+      font-size: clamp(2.75rem, 14vw, 4rem);
+    }
+
+    .hero__title-line--sub {
+      font-size: clamp(2rem, 10vw, 3rem);
+    }
+
     .hero__meta li {
       width: 100%;
     }
@@ -294,9 +323,8 @@ import SiteImage from './SiteImage.astro';
       display: none !important;
     }
 
-    .hero__visual {
-      width: min(100%, 320px);
-      margin-inline: auto;
+    .hero__scroll {
+      display: none;
     }
   }
 </style>

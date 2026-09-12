@@ -46,6 +46,12 @@ import SiteImage from './SiteImage.astro';
     align-items: center;
   }
 
+  @media (max-width: 767px) {
+    .intro__visual {
+      order: -1;
+    }
+  }
+
   .intro__text {
     margin-top: var(--space-md);
     max-width: 48ch;

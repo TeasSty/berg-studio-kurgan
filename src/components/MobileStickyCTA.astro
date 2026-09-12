@@ -34,6 +34,11 @@ import { site } from '../data/site';
     transform: translateY(0);
   }
 
+  .sticky-cta.is-menu-hidden {
+    transform: translateY(100%) !important;
+    pointer-events: none;
+  }
+
   .sticky-cta__btn {
     flex: 1;
     display: flex;

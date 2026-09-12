@@ -22,7 +22,9 @@ import SiteImage from './SiteImage.astro';
     <ul class="procedures__grid">
       {
         procedures.map((item, i) => (
-          <li class={`procedures__card procedures__card--${item.size} reveal reveal-delay-${Math.min((i % 4) + 1, 4)}`}>
+          <li
+            class={`procedures__card${item.featured ? ' procedures__card--featured' : ''} reveal reveal-delay-${Math.min((i % 4) + 1, 4)}`}
+          >
             <a href={site.vkMessage} class="procedures__link" target="_blank" rel="noopener noreferrer">
               <SiteImage
                 src={item.image}
@@ -64,6 +66,7 @@ import SiteImage from './SiteImage.astro';
 
   .procedures__grid {
     display: grid;
+    grid-template-columns: 1fr;
     gap: 1px;
     background: rgba(196, 176, 138, 0.1);
   }
@@ -96,10 +99,6 @@ import SiteImage from './SiteImage.astro';
   .procedures__image {
     aspect-ratio: 16 / 10;
     overflow: hidden;
-  }
-
-  .procedures__card--large .procedures__image {
-    aspect-ratio: 16 / 11;
   }
 
   .procedures__image :global(.site-image__img) {
@@ -156,45 +155,20 @@ import SiteImage from './SiteImage.astro';
     }
 
     .procedures__grid {
-      grid-template-columns: repeat(6, 1fr);
-      grid-auto-rows: minmax(280px, auto);
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .procedures__card--large {
-      grid-column: span 3;
-    }
-
-    .procedures__card--medium {
-      grid-column: span 2;
-    }
-
-    .procedures__card--small {
+    .procedures__card--featured {
       grid-column: span 2;
     }
   }
 
   @media (min-width: 1024px) {
-    .procedures__card--large {
-      grid-column: span 4;
-      grid-row: span 2;
+    .procedures__grid {
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    .procedures__card--large .procedures__image {
-      aspect-ratio: auto;
-      flex: 1;
-      min-height: 240px;
-    }
-
-    .procedures__card--large .procedures__link {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-    }
-
-    .procedures__card--medium {
-      grid-column: span 2;
-    }
-
-    .procedures__card--small {
+    .procedures__card--featured {
       grid-column: span 2;
     }
   }

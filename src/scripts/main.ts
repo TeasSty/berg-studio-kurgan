@@ -39,20 +39,26 @@ function initHeader() {
 function initMobileMenu() {
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  if (!toggle || !menu) return;
+  const header = document.getElementById('header');
+  const stickyCta = document.getElementById('sticky-cta');
+  if (!toggle || !menu || !header) return;
 
   const close = () => {
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Открыть меню');
     menu.hidden = true;
-    document.body.style.overflow = '';
+    header.classList.remove('is-menu-open');
+    document.documentElement.classList.remove('menu-open');
+    stickyCta?.classList.remove('is-menu-hidden');
   };
 
   const open = () => {
     toggle.setAttribute('aria-expanded', 'true');
     toggle.setAttribute('aria-label', 'Закрыть меню');
     menu.hidden = false;
-    document.body.style.overflow = 'hidden';
+    header.classList.add('is-menu-open');
+    document.documentElement.classList.add('menu-open');
+    stickyCta?.classList.add('is-menu-hidden');
   };
 
   toggle.addEventListener('click', () => {
@@ -62,6 +68,12 @@ function initMobileMenu() {
 
   menu.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', close);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024 && toggle.getAttribute('aria-expanded') === 'true') {
+      close();
+    }
   });
 
   document.addEventListener('keydown', (e) => {

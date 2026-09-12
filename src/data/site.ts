@@ -50,7 +50,7 @@ export const procedures = [
     title: 'Контурная пластика',
     description: 'Коррекция объёма и формы с акцентом на естественность и гармонию черт.',
     price: 'от 4 500 ₽',
-    size: 'large' as const,
+    featured: true,
     image: '/images/procedures/contour.jpg',
   },
   {
@@ -58,7 +58,6 @@ export const procedures = [
     title: 'Биоревитализация',
     description: 'Глубокое увлажнение и восстановление качества кожи.',
     price: 'от 3 000 ₽',
-    size: 'medium' as const,
     image: '/images/procedures/biorev.jpg',
   },
   {
@@ -66,7 +65,6 @@ export const procedures = [
     title: 'Мезотерапия',
     description: 'Точечная работа с тонусом, текстурой и свежестью кожи.',
     price: 'от 2 500 ₽',
-    size: 'medium' as const,
     image: '/images/procedures/meso.jpg',
   },
   {
@@ -74,7 +72,6 @@ export const procedures = [
     title: 'Ботулинотерапия',
     description: 'Коррекция мимических морщин с сохранением живой мимики.',
     price: 'по консультации',
-    size: 'small' as const,
     image: '/images/procedures/botox.jpg',
   },
   {
@@ -82,7 +79,6 @@ export const procedures = [
     title: 'Липолитики',
     description: 'Локальная коррекция контуров лица и тела без операции.',
     price: 'по консультации',
-    size: 'small' as const,
     image: '/images/procedures/lipolytics.jpg',
   },
   {
@@ -90,7 +86,6 @@ export const procedures = [
     title: 'SMAS-лифтинг',
     description: 'Аппаратное омоложение с работой на глубоких слоях тканей.',
     price: 'по консультации',
-    size: 'large' as const,
     image: '/images/procedures/smas.jpg',
   },
   {
@@ -98,7 +93,6 @@ export const procedures = [
     title: 'Микроигольчатый RF-лифтинг',
     description: 'Уплотнение кожи, улучшение рельефа и тонуса.',
     price: 'от 4 800 ₽',
-    size: 'medium' as const,
     image: '/images/procedures/rf.jpg',
   },
   {
@@ -106,7 +100,6 @@ export const procedures = [
     title: 'Отбеливание зубов',
     description: 'Косметическое отбеливание для свежей и аккуратной улыбки.',
     price: 'от 1 790 ₽',
-    size: 'small' as const,
     image: '/images/procedures/teeth.jpg',
   },
   {
@@ -114,7 +107,6 @@ export const procedures = [
     title: 'Блефаропластика без операции',
     description: 'Коррекция периорбитальной зоны без хирургического вмешательства.',
     price: '28 000 ₽',
-    size: 'large' as const,
     image: '/images/procedures/bleph.jpg',
   },
 ] as const;
