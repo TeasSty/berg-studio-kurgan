@@ -1,200 +1,175 @@
 ---
-import { site } from '../data/site';
+import { site, proofFacts } from '../data/site';
 ---
 
 <section class="hero" id="hero" aria-labelledby="hero-title">
-  <div class="hero__bg" aria-hidden="true">
-    <div class="hero__gradient"></div>
-    <div class="hero__line hero__line--1"></div>
-  </div>
+  <div class="container hero__inner">
+    <div class="hero__main">
+      <p class="hero__award reveal">{site.award} · {site.awardDetail}</p>
 
-  <div class="hero__inner container">
-    <div class="hero__intro">
-      <div class="hero__badge reveal">
-        <span class="hero__badge-dot" aria-hidden="true"></span>
-        {site.award}
-      </div>
-
-      <h1 class="hero__title" id="hero-title">
-        <span class="hero__title-line reveal">BERG</span>
-        <span class="hero__title-line hero__title-line--sub reveal reveal-delay-1">STUDIO</span>
+      <h1 class="hero__title reveal reveal-delay-1" id="hero-title">
+        Косметология в&nbsp;{site.city} с&nbsp;медицинским образованием
       </h1>
 
-      <p class="hero__tagline reveal reveal-delay-2">{site.motto} · {site.city}</p>
-    </div>
+      <p class="hero__motto reveal reveal-delay-2">{site.motto}</p>
 
-    <div class="hero__visual reveal reveal-delay-2" aria-hidden="true">
-      <div class="editorial-panel editorial-panel--hero">
-        <span class="editorial-panel__ring editorial-panel__ring--1"></span>
-        <span class="editorial-panel__ring editorial-panel__ring--2"></span>
-        <span class="editorial-panel__mono">B</span>
-        <div class="editorial-panel__hero-meta">
-          <span>{site.city}</span>
-          <span>2-й микрорайон, 8</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero__details">
-      <p class="hero__quote reveal reveal-delay-3">
-        Процедуры проводит<br />косметолог с&nbsp;мед. образованием
-      </p>
-
-      <ul class="hero__meta reveal reveal-delay-3" aria-label="Ключевые факты">
-        <li>Диплом, аккредитация</li>
+      <ul class="hero__proof reveal reveal-delay-2" aria-label="Ключевые факты">
+        <li>Диплом и аккредитация</li>
         <li>Кабинет по СанПин</li>
         <li>Запись — VK или телефон</li>
       </ul>
 
-      <div class="hero__actions reveal reveal-delay-4">
+      <div class="hero__actions reveal reveal-delay-3">
         <a href={site.vkMessage} class="btn btn--primary" target="_blank" rel="noopener noreferrer">
           Записаться
         </a>
-        <a href="#procedures" class="btn btn--ghost">Процедуры и цены</a>
+        <a href="#services" class="btn btn--ghost">Услуги и цены</a>
       </div>
     </div>
+
+    <aside class="hero__aside reveal reveal-delay-2" aria-label="Контакты и факты">
+      <div class="hero__address-block">
+        <p class="hero__address-label">Адрес</p>
+        <p class="hero__address">{site.fullAddress}</p>
+        <p class="hero__hours">{site.hours}</p>
+        <a href={`tel:${site.phone}`} class="hero__phone">{site.phoneDisplay}</a>
+      </div>
+
+      <ul class="stat-grid hero__stats">
+        {
+          proofFacts.map((fact) => (
+            <li class="stat-block">
+              <span class="stat-block__value">{fact.value}</span>
+              <span class="stat-block__label">{fact.label}</span>
+              <span class="stat-block__detail">{fact.detail}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </aside>
   </div>
 </section>
 
 <style>
   .hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    padding-top: var(--header-height);
-    overflow: hidden;
-  }
-
-  .hero__bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .hero__gradient {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse 80% 60% at 70% 40%,
-      rgba(196, 176, 138, 0.06) 0%,
-      transparent 60%
-    );
-  }
-
-  .hero__line {
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--color-champagne-dim),
-      transparent
-    );
-  }
-
-  .hero__line--1 {
-    top: 28%;
-    left: 0;
-    right: 30%;
+    padding-top: calc(var(--header-height) + var(--space-xl));
+    padding-bottom: var(--space-2xl);
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .hero__inner {
-    position: relative;
     display: grid;
     gap: var(--space-xl);
-    align-items: center;
-    padding-block: var(--space-xl);
-    min-height: calc(100svh - var(--header-height));
+    align-items: start;
   }
 
-  .hero__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.625rem;
-    padding: 0.5rem 1rem;
-    margin-bottom: var(--space-lg);
-    font-size: 0.6875rem;
-    letter-spacing: 0.06em;
+  .hero__award {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
     color: var(--color-champagne);
-    border: 1px solid var(--color-champagne-dim);
-  }
-
-  .hero__badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-champagne);
-    animation: pulse 2.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    margin-bottom: var(--space-md);
+    max-width: 40ch;
   }
 
   .hero__title {
     font-family: var(--font-display);
-    font-weight: 400;
-    line-height: 0.92;
-    letter-spacing: -0.02em;
-  }
-
-  .hero__title-line {
-    display: block;
-    font-size: clamp(3.5rem, 12vw, 7.5rem);
+    font-size: clamp(2rem, 5.5vw, 3.25rem);
+    font-weight: 500;
+    line-height: 1.1;
+    max-width: 16ch;
     color: var(--color-ivory);
   }
 
-  .hero__title-line--sub {
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    color: var(--color-champagne);
-    font-style: italic;
-    margin-top: -0.05em;
-  }
-
-  .hero__tagline {
+  .hero__motto {
     margin-top: var(--space-sm);
-    font-size: 0.8125rem;
-    letter-spacing: 0.08em;
+    font-size: 0.9375rem;
     color: var(--color-taupe);
   }
 
-  .hero__quote {
-    font-family: var(--font-display);
-    font-size: clamp(1.375rem, 3vw, 1.875rem);
-    font-weight: 400;
-    line-height: 1.35;
-    color: var(--color-text-muted);
-    max-width: 22ch;
-  }
-
-  .hero__meta {
+  .hero__proof {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
-    margin-top: var(--space-lg);
-    font-size: 0.75rem;
-    color: var(--color-taupe);
+    gap: 0.5rem 1.25rem;
+    margin-top: var(--space-md);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
   }
 
-  .hero__meta li:not(:last-child)::after {
-    content: '·';
-    margin-left: 1.5rem;
-    color: var(--color-champagne-dim);
+  .hero__proof li {
+    position: relative;
+    padding-left: 0.875rem;
+  }
+
+  .hero__proof li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-champagne);
   }
 
   .hero__actions {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
-    margin-top: var(--space-xl);
+    margin-top: var(--space-lg);
   }
 
-  .hero__visual {
-    position: relative;
-    justify-self: center;
-    width: min(100%, 420px);
+  .hero__aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .hero__address-block {
+    padding: var(--space-md);
+    background: var(--color-graphite-soft);
+    border: 1px solid var(--color-border);
+  }
+
+  .hero__address-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-champagne);
+    margin-bottom: 0.375rem;
+  }
+
+  .hero__address {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--color-ivory);
+  }
+
+  .hero__hours {
+    margin-top: 0.375rem;
+    font-size: 0.8125rem;
+    color: var(--color-taupe);
+  }
+
+  .hero__phone {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-champagne);
+    transition: color var(--transition-fast);
+  }
+
+  .hero__phone:hover {
+    color: var(--color-ivory);
+  }
+
+  .hero__stats {
+    margin-top: 0;
   }
 
   @media (min-width: 768px) {
@@ -206,55 +181,8 @@ import { site } from '../data/site';
 
   @media (min-width: 1024px) {
     .hero__inner {
-      grid-template-columns: 1fr 0.85fr;
-      grid-template-rows: auto 1fr;
-      gap: var(--space-2xl);
-    }
-
-    .hero__intro,
-    .hero__details {
-      grid-column: 1;
-    }
-
-    .hero__visual {
-      grid-column: 2;
-      grid-row: 1 / -1;
-      align-self: center;
-      width: 100%;
-      max-width: 480px;
-      justify-self: end;
-    }
-
-    .hero__meta li:not(:last-child)::after {
-      display: none;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .hero__visual {
-      width: 100%;
-      max-width: 360px;
-      margin-inline: auto;
-    }
-
-    .hero__badge {
-      margin-bottom: var(--space-md);
-    }
-
-    .hero__title-line {
-      font-size: clamp(2.75rem, 14vw, 4rem);
-    }
-
-    .hero__title-line--sub {
-      font-size: clamp(2rem, 10vw, 3rem);
-    }
-
-    .hero__meta li {
-      width: 100%;
-    }
-
-    .hero__meta li::after {
-      display: none !important;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-3xl);
     }
   }
 </style>

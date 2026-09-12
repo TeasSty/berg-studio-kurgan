@@ -2,20 +2,18 @@
 import { trustItems } from '../data/site';
 ---
 
-<section class="trust section" id="trust" aria-labelledby="trust-title">
+<section class="trust section section--ivory" id="trust" aria-labelledby="trust-title">
   <div class="container">
-    <h2 class="section-title reveal" id="trust-title">
-      Почему нам доверяют
-    </h2>
+    <header class="section-header reveal">
+      <p class="section-label">Проверено</p>
+      <h2 class="section-title" id="trust-title">Почему нам доверяют</h2>
+    </header>
 
-    <ul class="trust__grid">
+    <ul class="stat-grid">
       {
         trustItems.map((item, i) => (
-          <li class={`trust__item reveal reveal-delay-${Math.min(i + 1, 4)}`}>
-            <span class="trust__index" aria-hidden="true">
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <h3 class="trust__title">{item.title}</h3>
+          <li class={`stat-block reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+            <span class="stat-block__label">{item.title}</span>
             <p class="trust__text">{item.text}</p>
           </li>
         ))
@@ -25,50 +23,23 @@ import { trustItems } from '../data/site';
 </section>
 
 <style>
-  .trust__grid {
-    display: grid;
-    gap: 1px;
-    margin-top: var(--space-xl);
-    background: rgba(196, 176, 138, 0.12);
-    border: 1px solid rgba(196, 176, 138, 0.12);
+  .trust .stat-block {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
   }
 
-  .trust__item {
-    padding: var(--space-lg);
-    background: var(--color-graphite);
-  }
-
-  .trust__index {
-    display: block;
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    color: var(--color-champagne);
-    margin-bottom: var(--space-md);
-  }
-
-  .trust__title {
+  .trust .stat-block__label {
     font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: var(--space-sm);
-    color: var(--color-ivory);
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
   }
 
   .trust__text {
     font-size: 0.9375rem;
-    color: var(--color-text-muted);
-    max-width: 32ch;
-  }
-
-  @media (min-width: 768px) {
-    .trust__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .trust__grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    color: var(--color-text-dark-muted);
+    max-width: 36ch;
+    flex: 1;
   }
 </style>

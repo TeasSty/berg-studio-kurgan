@@ -3,106 +3,36 @@ import { safetyPoints } from '../data/site';
 ---
 
 <section class="safety section" id="safety" aria-labelledby="safety-title">
-  <div class="container">
-    <div class="safety__header">
-      <h2 class="section-title reveal" id="safety-title">
-        Безопасность
-      </h2>
-      <p class="section-lead reveal reveal-delay-1">
+  <div class="container container--narrow">
+    <header class="section-header reveal">
+      <p class="section-label">Безопасность</p>
+      <h2 class="section-title" id="safety-title">Кабинет по СанПин</h2>
+      <p class="section-lead">
         Отдельное внимание — безопасности. Кабинет оборудован по нормам
         СанПин. В работе — только одноразовые и стерильные расходники.
       </p>
-    </div>
+    </header>
 
-    <div class="safety__layout">
-      <ol class="safety__list">
-        {
-          safetyPoints.map((point, i) => (
-            <li class={`safety__item reveal reveal-delay-${Math.min(i + 1, 4)}`}>
-              <span class="safety__num" aria-hidden="true">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <div>
-                <h3 class="safety__title">{point.title}</h3>
-                <p class="safety__text">{point.text}</p>
-              </div>
-            </li>
-          ))
-        }
-      </ol>
-
-      <aside class="safety__aside reveal reveal-delay-2" aria-label="Протоколы безопасности">
-        <div class="editorial-panel editorial-panel--protocol">
-          <p class="editorial-panel__protocol-label">Протокол</p>
-          <ul class="editorial-panel__protocol-list">
-            <li>Осмотр и анамнез перед процедурой</li>
-            <li>Дезинфекция и стерилизация</li>
-            <li>Одноразовые расходники</li>
-            <li>Кабинет готов каждый день</li>
-          </ul>
-        </div>
-      </aside>
-    </div>
+    <ol class="safety__list">
+      {
+        safetyPoints.map((point, i) => (
+          <li class={`fact-row reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+            <span class="fact-row__marker" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h3 class="fact-row__title">{point.title}</h3>
+              <p class="fact-row__text">{point.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
   </div>
 </section>
 
 <style>
-  .safety__header {
-    max-width: 640px;
-    margin-bottom: var(--space-xl);
-  }
-
-  .safety__layout {
-    display: grid;
-    gap: var(--space-xl);
-    align-items: start;
-  }
-
   .safety__list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border-top: 1px solid rgba(196, 176, 138, 0.15);
-  }
-
-  .safety__item {
-    display: grid;
-    grid-template-columns: 3rem 1fr;
-    gap: var(--space-md);
-    padding-block: var(--space-lg);
-    border-bottom: 1px solid rgba(196, 176, 138, 0.15);
-  }
-
-  .safety__num {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--color-champagne);
-    line-height: 1;
-  }
-
-  .safety__title {
-    font-family: var(--font-display);
-    font-size: 1.375rem;
-    font-weight: 400;
-    margin-bottom: 0.375rem;
-    color: var(--color-ivory);
-  }
-
-  .safety__text {
-    font-size: 0.9375rem;
-    color: var(--color-text-muted);
-    max-width: 42ch;
-  }
-
-  @media (min-width: 1024px) {
-    .safety__layout {
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: var(--space-3xl);
-    }
-
-    .safety__aside {
-      position: sticky;
-      top: calc(var(--header-height) + 2rem);
-    }
+    margin-top: var(--space-md);
   }
 </style>

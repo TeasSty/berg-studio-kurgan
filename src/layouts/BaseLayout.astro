@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { site } from '../data/site';
 import Header from '../components/Header.astro';
+import ProofStrip from '../components/ProofStrip.astro';
 import Footer from '../components/Footer.astro';
 import MobileStickyCTA from '../components/MobileStickyCTA.astro';
 
@@ -42,7 +43,7 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
@@ -50,8 +51,8 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
 
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
-      '@type': 'BeautySalon',
-      name: `${site.name} COSMETOLOGY`,
+      '@type': 'LocalBusiness',
+      name: site.name,
       description: site.description,
       url: site.url,
       telephone: site.phone,
@@ -69,11 +70,28 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
       },
       sameAs: [site.vk],
       priceRange: '₽₽',
+      aggregateRating: [
+        {
+          '@type': 'AggregateRating',
+          ratingValue: '5.0',
+          bestRating: '5',
+          ratingCount: '1',
+          name: 'Dikidi',
+        },
+        {
+          '@type': 'AggregateRating',
+          ratingValue: '4.7',
+          bestRating: '5',
+          ratingCount: '1',
+          name: '2GIS',
+        },
+      ],
     })} />
   </head>
   <body>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
     <Header />
+    <ProofStrip />
     <main id="main">
       <slot />
     </main>

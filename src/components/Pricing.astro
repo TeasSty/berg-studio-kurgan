@@ -4,13 +4,13 @@ import { pricingCategories, site } from '../data/site';
 
 <section class="pricing section" id="pricing" aria-labelledby="pricing-title">
   <div class="container container--narrow">
-    <h2 class="section-title reveal" id="pricing-title">
-      Прайс
-    </h2>
-    <p class="section-lead reveal reveal-delay-1">
-      Цена зависит от зоны и препарата. Точную сумму скажем
-      на консультации.
-    </p>
+    <header class="section-header reveal">
+      <p class="section-label">Прайс</p>
+      <h2 class="section-title" id="pricing-title">Стоимость процедур</h2>
+      <p class="section-lead">
+        Цена зависит от зоны и препарата. Точную сумму скажем на консультации.
+      </p>
+    </header>
 
     <div class="pricing__categories">
       {
@@ -21,7 +21,6 @@ import { pricingCategories, site } from '../data/site';
               {category.items.map((item) => (
                 <li class="pricing__item">
                   <span class="pricing__name">{item.name}</span>
-                  <span class="pricing__dots" aria-hidden="true"></span>
                   <span class="pricing__price">{item.price}</span>
                 </li>
               ))}
@@ -48,35 +47,35 @@ import { pricingCategories, site } from '../data/site';
 
 <style>
   .pricing__categories {
-    margin-top: var(--space-xl);
+    margin-top: var(--space-md);
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl);
+    gap: var(--space-lg);
   }
 
   .pricing__category-name {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--color-ivory);
-    margin-bottom: var(--space-md);
-    padding-bottom: var(--space-sm);
-    border-bottom: 1px solid rgba(196, 176, 138, 0.2);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-champagne);
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .pricing__list {
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
 
   .pricing__item {
-    display: grid;
-    grid-template-columns: 1fr auto auto;
+    display: flex;
     align-items: baseline;
-    gap: 0.5rem;
-    padding-block: 1rem;
-    border-bottom: 1px solid rgba(196, 176, 138, 0.08);
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding-block: 0.875rem;
+    border-bottom: 1px solid var(--color-border);
   }
 
   .pricing__name {
@@ -84,19 +83,12 @@ import { pricingCategories, site } from '../data/site';
     color: var(--color-text-muted);
   }
 
-  .pricing__dots {
-    flex: 1;
-    min-width: 1rem;
-    border-bottom: 1px dotted rgba(196, 176, 138, 0.25);
-    align-self: end;
-    margin-bottom: 0.3em;
-  }
-
   .pricing__price {
     font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-champagne);
+    font-weight: 600;
+    color: var(--color-ivory);
     white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .pricing__note {
@@ -107,17 +99,6 @@ import { pricingCategories, site } from '../data/site';
   }
 
   .pricing .btn {
-    margin-top: var(--space-lg);
-  }
-
-  @media (max-width: 480px) {
-    .pricing__item {
-      grid-template-columns: 1fr;
-      gap: 0.25rem;
-    }
-
-    .pricing__dots {
-      display: none;
-    }
+    margin-top: var(--space-md);
   }
 </style>

@@ -6,7 +6,7 @@ import { site, navLinks } from '../data/site';
   <div class="header__inner container">
     <a href="#" class="header__logo" aria-label={`${site.name} — на главную`}>
       <span class="header__logo-main">{site.name}</span>
-      <span class="header__logo-sub">{site.tagline}</span>
+      <span class="header__logo-sub">{site.city}</span>
     </a>
 
     <nav class="header__nav" aria-label="Основная навигация">
@@ -65,9 +65,9 @@ import { site, navLinks } from '../data/site';
     inset: 0 0 auto;
     z-index: 100;
     height: var(--header-height);
-    background: rgba(14, 14, 16, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(196, 176, 138, 0.08);
+    background: rgba(14, 14, 16, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
     transition: background var(--transition-fast);
   }
 
@@ -78,7 +78,7 @@ import { site, navLinks } from '../data/site';
   }
 
   .header.is-scrolled {
-    background: rgba(14, 14, 16, 0.96);
+    background: rgba(14, 14, 16, 0.98);
   }
 
   .header__inner {
@@ -92,20 +92,21 @@ import { site, navLinks } from '../data/site';
   .header__logo {
     display: flex;
     flex-direction: column;
-    line-height: 1.1;
+    line-height: 1.15;
   }
 
   .header__logo-main {
     font-family: var(--font-display);
-    font-size: 1.125rem;
-    letter-spacing: 0.12em;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     color: var(--color-ivory);
   }
 
   .header__logo-sub {
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    color: var(--color-champagne);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    color: var(--color-taupe);
   }
 
   .header__nav {
@@ -114,13 +115,13 @@ import { site, navLinks } from '../data/site';
 
   .header__nav-list {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .header__nav-link {
     font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.04em;
     color: var(--color-text-muted);
     transition: color var(--transition-fast);
   }
@@ -149,7 +150,7 @@ import { site, navLinks } from '../data/site';
 
   .header__cta {
     display: none;
-    padding-inline: 1.25rem;
+    padding-inline: 1.125rem;
     font-size: 0.6875rem;
   }
 
@@ -186,11 +187,11 @@ import { site, navLinks } from '../data/site';
     display: flex;
     flex-direction: column;
     background: var(--color-graphite);
-    padding: var(--space-lg) var(--space-md) calc(var(--space-lg) + env(safe-area-inset-bottom));
+    padding: var(--space-md) var(--space-md) calc(var(--space-md) + env(safe-area-inset-bottom));
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-    border-top: 1px solid rgba(196, 176, 138, 0.08);
+    border-top: 1px solid var(--color-border);
   }
 
   .mobile-menu[hidden] {
@@ -200,21 +201,20 @@ import { site, navLinks } from '../data/site';
   .mobile-menu__list {
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
 
   .mobile-menu__link {
     display: block;
-    padding: 1rem 0;
-    font-family: var(--font-display);
-    font-size: 1.75rem;
+    padding: 0.875rem 0;
+    font-size: 1.0625rem;
+    font-weight: 500;
     color: var(--color-ivory);
-    border-bottom: 1px solid rgba(196, 176, 138, 0.1);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .mobile-menu__footer {
     margin-top: auto;
-    padding-top: var(--space-lg);
+    padding-top: var(--space-md);
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
@@ -222,7 +222,6 @@ import { site, navLinks } from '../data/site';
 
   .mobile-menu__phone {
     font-size: 1rem;
-    letter-spacing: 0.04em;
     color: var(--color-champagne);
     text-align: center;
   }

@@ -1,56 +1,79 @@
 ---
-import { site } from '../data/site';
+import { site, ratings } from '../data/site';
 ---
 
-<section class="intro section section--ivory" id="intro" aria-labelledby="intro-title">
-  <div class="container intro__inner">
-    <div class="intro__content">
-      <h2 class="section-title reveal" id="intro-title">
-        О&nbsp;студии
-      </h2>
-      <p class="intro__text reveal reveal-delay-1">
-        Добро пожаловать в студию косметологии и красоты Berg studio.
-        Курган, 2-й микрорайон, 8.
-      </p>
-      <p class="intro__text reveal reveal-delay-2">
-        Дипломированный косметолог с медицинским образованием и действующей
-        аккредитацией. Лауреат премии Топ-100 успешных людей Курганской
-        области. После посещения остаёмся на связи по всем вопросам.
-      </p>
+<section class="about section" id="about" aria-labelledby="about-title">
+  <div class="container about__inner">
+    <div class="about__content">
+      <header class="section-header reveal">
+        <p class="section-label">О нас</p>
+        <h2 class="section-title" id="about-title">О студии</h2>
+      </header>
+
+      <div class="about__text reveal reveal-delay-1">
+        <p>
+          Добро пожаловать в студию косметологии и красоты Berg studio.
+          {site.city}, 2-й микрорайон, 8.
+        </p>
+        <p>
+          Мы — дипломированные косметологи с медицинским образованием и действующей
+          аккредитацией. Лауреаты премии Топ-100 успешных людей Курганской
+          области. После посещения остаёмся на связи по всем вопросам.
+        </p>
+        <p>
+          Принцип работы простой: не навреди. Подбираем процедуру после
+          консультации и осмотра — не «на глаз».
+        </p>
+      </div>
     </div>
 
-    <aside class="intro__aside reveal reveal-delay-2" aria-label="Принцип работы">
-      <div class="editorial-panel editorial-panel--quote">
-        <span class="editorial-panel__quote-mark" aria-hidden="true">«</span>
-        <p class="editorial-panel__quote-text">Не навреди</p>
-        <p class="editorial-panel__quote-author">{site.name}</p>
-      </div>
+    <aside class="about__aside reveal reveal-delay-2" aria-label="Рейтинги">
+      <ul class="stat-grid">
+        {
+          ratings.map((r) => (
+            <li class="stat-block">
+              <span class="stat-block__value">{r.value}</span>
+              <span class="stat-block__label">{r.label}</span>
+            </li>
+          ))
+        }
+        <li class="stat-block about__stat-full">
+          <span class="stat-block__label">Запись</span>
+          <span class="stat-block__detail">{site.hours}</span>
+        </li>
+        <li class="stat-block about__stat-full">
+          <span class="stat-block__label">Адрес</span>
+          <span class="stat-block__detail">{site.fullAddress}</span>
+        </li>
+      </ul>
     </aside>
   </div>
 </section>
 
 <style>
-  .intro__inner {
+  .about__inner {
     display: grid;
     gap: var(--space-xl);
-    align-items: center;
+    align-items: start;
   }
 
-  .intro__text {
-    margin-top: var(--space-md);
-    max-width: 48ch;
-    color: var(--color-text-dark-muted);
-    font-size: 1.0625rem;
+  .about__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 56ch;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+  }
+
+  .about__stat-full {
+    grid-column: 1 / -1;
   }
 
   @media (min-width: 1024px) {
-    .intro__inner {
-      grid-template-columns: 1.1fr 0.9fr;
+    .about__inner {
+      grid-template-columns: 1.2fr 0.8fr;
       gap: var(--space-3xl);
-    }
-
-    .intro__aside {
-      justify-self: end;
     }
   }
 </style>
