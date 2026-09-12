@@ -1,19 +1,16 @@
 ---
 import { safetyPoints } from '../data/site';
-import SiteImage from './SiteImage.astro';
 ---
 
 <section class="safety section" id="safety" aria-labelledby="safety-title">
   <div class="container">
     <div class="safety__header">
-      <p class="section-label reveal">Safety</p>
-      <h2 class="section-title reveal reveal-delay-1" id="safety-title">
-        Красота начинается<br />с&nbsp;безопасности
+      <h2 class="section-title reveal" id="safety-title">
+        Безопасность
       </h2>
-      <div class="gold-line reveal reveal-delay-2"></div>
-      <p class="section-lead reveal reveal-delay-2">
-        Медицинский подход — это не только результат, но и то, как организован
-        каждый этап работы с пациентом.
+      <p class="section-lead reveal reveal-delay-1">
+        Кабинет по нормам СанПин. Каждый этап — от осмотра до обработки
+        инструментов — под контролем.
       </p>
     </div>
 
@@ -34,13 +31,17 @@ import SiteImage from './SiteImage.astro';
         }
       </ol>
 
-      <div class="safety__visual reveal reveal-delay-2">
-        <SiteImage class="safety__image" aspect="4 / 5" />
-        <p class="safety__note">
-          Кабинет оборудован по нормам СанПин. Все этапы дезинфекции и
-          стерилизации соблюдаются без исключений.
-        </p>
-      </div>
+      <aside class="safety__aside reveal reveal-delay-2" aria-label="Протоколы безопасности">
+        <div class="editorial-panel editorial-panel--protocol">
+          <p class="editorial-panel__protocol-label">Протокол</p>
+          <ul class="editorial-panel__protocol-list">
+            <li>Осмотр и анамнез перед каждой процедурой</li>
+            <li>Стерилизация инструментов по регламенту</li>
+            <li>Одноразовые расходники без исключений</li>
+            <li>Кабинет готов к приёму — каждый день</li>
+          </ul>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
@@ -93,31 +94,13 @@ import SiteImage from './SiteImage.astro';
     max-width: 42ch;
   }
 
-  .safety__visual {
-    position: relative;
-  }
-
-  .safety__image {
-    max-width: 400px;
-    margin-inline: auto;
-  }
-
-  .safety__note {
-    margin-top: var(--space-md);
-    padding-left: var(--space-md);
-    border-left: 2px solid var(--color-champagne);
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    max-width: 36ch;
-  }
-
   @media (min-width: 1024px) {
     .safety__layout {
       grid-template-columns: 1.1fr 0.9fr;
       gap: var(--space-3xl);
     }
 
-    .safety__visual {
+    .safety__aside {
       position: sticky;
       top: calc(var(--header-height) + 2rem);
     }

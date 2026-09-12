@@ -1,21 +1,16 @@
 ---
 import { procedures, site } from '../data/site';
-import SiteImage from './SiteImage.astro';
 ---
 
 <section class="procedures section" id="procedures" aria-labelledby="procedures-title">
   <div class="container">
     <div class="procedures__header">
-      <div>
-        <p class="section-label reveal">Procedures</p>
-        <h2 class="section-title reveal reveal-delay-1" id="procedures-title">
-          Процедуры
-        </h2>
-        <div class="gold-line reveal reveal-delay-2"></div>
-      </div>
-      <p class="procedures__lead reveal reveal-delay-2">
-        Каждая методика подбирается индивидуально — с учётом вашего возраста,
-        типа кожи и желаемого результата.
+      <h2 class="section-title reveal" id="procedures-title">
+        Процедуры
+      </h2>
+      <p class="procedures__lead reveal reveal-delay-1">
+        Подбираю методику после консультации — с учётом кожи, возраста
+        и того, чего вы хотите добиться.
       </p>
     </div>
 
@@ -26,13 +21,15 @@ import SiteImage from './SiteImage.astro';
             class={`procedures__card${item.featured ? ' procedures__card--featured' : ''} reveal reveal-delay-${Math.min((i % 4) + 1, 4)}`}
           >
             <a href={site.vkMessage} class="procedures__link" target="_blank" rel="noopener noreferrer">
-              <SiteImage class="procedures__image" aspect="16 / 10" />
+              <span class="procedures__index" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
               <div class="procedures__body">
                 <h3 class="procedures__title">{item.title}</h3>
                 <p class="procedures__desc">{item.description}</p>
                 <div class="procedures__footer">
                   <span class="procedures__price">{item.price}</span>
-                  <span class="procedures__arrow" aria-hidden="true">→</span>
+                  <span class="procedures__cta">Записаться →</span>
                 </div>
               </div>
             </a>
@@ -46,15 +43,14 @@ import SiteImage from './SiteImage.astro';
 <style>
   .procedures__header {
     display: grid;
-    gap: var(--space-lg);
+    gap: var(--space-md);
     margin-bottom: var(--space-xl);
   }
 
   .procedures__lead {
-    max-width: 36ch;
+    max-width: 40ch;
     color: var(--color-text-muted);
     font-size: 1rem;
-    align-self: end;
   }
 
   .procedures__grid {
@@ -70,8 +66,11 @@ import SiteImage from './SiteImage.astro';
   }
 
   .procedures__link {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-md);
+    align-items: start;
+    padding: var(--space-lg);
     height: 100%;
     transition: background var(--transition-fast);
   }
@@ -80,25 +79,27 @@ import SiteImage from './SiteImage.astro';
     background: rgba(26, 26, 28, 0.8);
   }
 
-  .procedures__link:hover .procedures__arrow {
-    transform: translateX(4px);
+  .procedures__link:hover .procedures__cta {
     color: var(--color-champagne);
   }
 
-  .procedures__image {
-    aspect-ratio: 16 / 10;
+  .procedures__index {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1;
+    color: rgba(196, 176, 138, 0.35);
+    padding-top: 0.125rem;
   }
 
   .procedures__body {
-    padding: var(--space-md) var(--space-lg) var(--space-lg);
-    flex: 1;
     display: flex;
     flex-direction: column;
+    min-height: 100%;
   }
 
   .procedures__title {
     font-family: var(--font-display);
-    font-size: 1.625rem;
+    font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: var(--space-xs);
     color: var(--color-ivory);
@@ -116,8 +117,7 @@ import SiteImage from './SiteImage.astro';
     align-items: center;
     justify-content: space-between;
     margin-top: var(--space-md);
-    padding-top: var(--space-md);
-    border-top: 1px solid rgba(196, 176, 138, 0.12);
+    padding-top: var(--space-sm);
   }
 
   .procedures__price {
@@ -126,10 +126,10 @@ import SiteImage from './SiteImage.astro';
     color: var(--color-champagne);
   }
 
-  .procedures__arrow {
-    font-size: 1.25rem;
+  .procedures__cta {
+    font-size: 0.75rem;
     color: var(--color-taupe);
-    transition: transform var(--transition-fast), color var(--transition-fast);
+    transition: color var(--transition-fast);
   }
 
   @media (min-width: 768px) {
@@ -144,6 +144,10 @@ import SiteImage from './SiteImage.astro';
 
     .procedures__card--featured {
       grid-column: span 2;
+    }
+
+    .procedures__card--featured .procedures__title {
+      font-size: 1.75rem;
     }
   }
 

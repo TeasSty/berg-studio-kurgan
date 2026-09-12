@@ -1,13 +1,11 @@
 ---
 import { site } from '../data/site';
-import SiteImage from './SiteImage.astro';
 ---
 
 <section class="hero" id="hero" aria-labelledby="hero-title">
   <div class="hero__bg" aria-hidden="true">
     <div class="hero__gradient"></div>
     <div class="hero__line hero__line--1"></div>
-    <div class="hero__line hero__line--2"></div>
   </div>
 
   <div class="hero__inner container">
@@ -22,39 +20,39 @@ import SiteImage from './SiteImage.astro';
         <span class="hero__title-line hero__title-line--sub reveal reveal-delay-1">STUDIO</span>
       </h1>
 
-      <p class="hero__tagline reveal reveal-delay-2">{site.tagline}</p>
+      <p class="hero__tagline reveal reveal-delay-2">{site.tagline} · {site.city}</p>
     </div>
 
-    <div class="hero__visual reveal reveal-delay-2">
-      <SiteImage class="hero__image" aspect="4 / 5" />
-      <div class="hero__visual-frame" aria-hidden="true"></div>
+    <div class="hero__visual reveal reveal-delay-2" aria-hidden="true">
+      <div class="editorial-panel editorial-panel--hero">
+        <span class="editorial-panel__ring editorial-panel__ring--1"></span>
+        <span class="editorial-panel__ring editorial-panel__ring--2"></span>
+        <span class="editorial-panel__mono">B</span>
+        <div class="editorial-panel__hero-meta">
+          <span>{site.city}</span>
+          <span>2-й микрорайон, 8</span>
+        </div>
+      </div>
     </div>
 
     <div class="hero__details">
-      <div class="gold-line hero__gold-line reveal reveal-delay-2"></div>
-
       <p class="hero__quote reveal reveal-delay-3">
-        Эстетика, основанная<br />на медицинском подходе
+        Косметология с&nbsp;медицинским<br />образованием и&nbsp;аккредитацией
       </p>
 
-      <ul class="hero__meta reveal reveal-delay-3" aria-label="Ключевые преимущества">
-        <li>Медицинское образование</li>
-        <li>Стерильность и точность</li>
-        <li>Индивидуальный план</li>
+      <ul class="hero__meta reveal reveal-delay-3" aria-label="Ключевые факты">
+        <li>Диплом · аккредитация</li>
+        <li>Кабинет по СанПин</li>
+        <li>Запись по телефону и VK</li>
       </ul>
 
       <div class="hero__actions reveal reveal-delay-4">
         <a href={site.vkMessage} class="btn btn--primary" target="_blank" rel="noopener noreferrer">
-          Записаться на консультацию
+          Записаться
         </a>
-        <a href="#procedures" class="btn btn--ghost">Исследовать процедуры</a>
+        <a href="#procedures" class="btn btn--ghost">Процедуры и цены</a>
       </div>
     </div>
-  </div>
-
-  <div class="hero__scroll" aria-hidden="true">
-    <span>Scroll</span>
-    <div class="hero__scroll-line"></div>
   </div>
 </section>
 
@@ -99,12 +97,6 @@ import SiteImage from './SiteImage.astro';
     top: 28%;
     left: 0;
     right: 30%;
-  }
-
-  .hero__line--2 {
-    bottom: 22%;
-    left: 20%;
-    right: 0;
   }
 
   .hero__inner {
@@ -163,14 +155,9 @@ import SiteImage from './SiteImage.astro';
 
   .hero__tagline {
     margin-top: var(--space-sm);
-    font-size: 0.6875rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
     color: var(--color-taupe);
-  }
-
-  .hero__gold-line {
-    margin-block: var(--space-md) var(--space-lg);
   }
 
   .hero__quote {
@@ -179,7 +166,7 @@ import SiteImage from './SiteImage.astro';
     font-weight: 400;
     line-height: 1.35;
     color: var(--color-text-muted);
-    max-width: 18ch;
+    max-width: 22ch;
   }
 
   .hero__meta {
@@ -187,9 +174,7 @@ import SiteImage from './SiteImage.astro';
     flex-wrap: wrap;
     gap: 0.5rem 1.5rem;
     margin-top: var(--space-lg);
-    font-size: 0.625rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 0.75rem;
     color: var(--color-taupe);
   }
 
@@ -210,44 +195,6 @@ import SiteImage from './SiteImage.astro';
     position: relative;
     justify-self: center;
     width: min(100%, 420px);
-  }
-
-  .hero__image {
-    width: 100%;
-  }
-
-  .hero__visual-frame {
-    position: absolute;
-    inset: -12px -12px 12px 12px;
-    border: 1px solid var(--color-champagne-dim);
-    pointer-events: none;
-  }
-
-  .hero__scroll {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.5625rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--color-taupe);
-  }
-
-  .hero__scroll-line {
-    width: 1px;
-    height: 48px;
-    background: linear-gradient(to bottom, var(--color-champagne), transparent);
-    animation: scrollLine 2s ease-in-out infinite;
-  }
-
-  @keyframes scrollLine {
-    0%, 100% { transform: scaleY(1); opacity: 1; }
-    50% { transform: scaleY(0.6); opacity: 0.5; }
   }
 
   @media (min-width: 768px) {
@@ -276,10 +223,6 @@ import SiteImage from './SiteImage.astro';
       width: 100%;
       max-width: 480px;
       justify-self: end;
-    }
-
-    .hero__scroll {
-      display: flex;
     }
 
     .hero__meta li:not(:last-child)::after {
@@ -312,10 +255,6 @@ import SiteImage from './SiteImage.astro';
 
     .hero__meta li::after {
       display: none !important;
-    }
-
-    .hero__scroll {
-      display: none;
     }
   }
 </style>

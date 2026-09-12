@@ -1,34 +1,34 @@
 ---
 import { site } from '../data/site';
-import SiteImage from './SiteImage.astro';
 ---
 
 <section class="intro section section--ivory" id="intro" aria-labelledby="intro-title">
   <div class="container intro__inner">
     <div class="intro__content">
-      <p class="section-label reveal">Philosophy</p>
-      <h2 class="section-title reveal reveal-delay-1" id="intro-title">
-        Красота начинается с&nbsp;профессионального подхода
+      <h2 class="section-title reveal" id="intro-title">
+        О&nbsp;студии
       </h2>
-      <div class="gold-line reveal reveal-delay-2"></div>
-      <p class="intro__text reveal reveal-delay-3">
-        BERG STUDIO — это не набор процедур из прайса. Это персональная практика,
-        где медицинское образование, стерильность и внимание к деталям стоят на
-        первом месте.
+      <p class="intro__text reveal reveal-delay-1">
+        BERG STUDIO — мой кабинет в Кургане, 2-й микрорайон, 8. Работаю
+        с инъекциями, аппаратными методиками и уходом за кожей.
       </p>
-      <p class="intro__text reveal reveal-delay-3">
-        Я работаю с запросом «выглядеть естественно» — без перекоррекции,
-        без шаблонных решений. Каждый план составляется индивидуально после
-        консультации и оценки состояния кожи.
+      <p class="intro__text reveal reveal-delay-2">
+        Пришла из режимной медицины — поэтому для меня важны стерильность,
+        аккуратность и честный разговор до процедуры. Не предлагаю лишнего:
+        сначала смотрю, потом предлагаю план.
       </p>
-      <p class="intro__signature reveal reveal-delay-4">
-        — Жанна, косметолог {site.name}
+      <p class="intro__signature reveal reveal-delay-3">
+        — Жанна
       </p>
     </div>
 
-    <div class="intro__visual reveal reveal-delay-2">
-      <SiteImage class="intro__image" aspect="4 / 5" />
-    </div>
+    <aside class="intro__aside reveal reveal-delay-2" aria-label="Принцип работы">
+      <div class="editorial-panel editorial-panel--quote">
+        <span class="editorial-panel__quote-mark" aria-hidden="true">«</span>
+        <p class="editorial-panel__quote-text">Не навреди — и&nbsp;сделай красиво</p>
+        <p class="editorial-panel__quote-author">Жанна · {site.name}</p>
+      </div>
+    </aside>
   </div>
 </section>
 
@@ -37,12 +37,6 @@ import SiteImage from './SiteImage.astro';
     display: grid;
     gap: var(--space-xl);
     align-items: center;
-  }
-
-  @media (max-width: 767px) {
-    .intro__visual {
-      order: -1;
-    }
   }
 
   .intro__text {
@@ -60,22 +54,13 @@ import SiteImage from './SiteImage.astro';
     color: var(--color-taupe);
   }
 
-  .intro__visual {
-    position: relative;
-  }
-
-  .intro__image {
-    max-width: 440px;
-    margin-inline: auto;
-  }
-
   @media (min-width: 1024px) {
     .intro__inner {
-      grid-template-columns: 1fr 0.75fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: var(--space-3xl);
     }
 
-    .intro__visual {
+    .intro__aside {
       justify-self: end;
     }
   }

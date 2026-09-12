@@ -1,71 +1,56 @@
 ---
 import { site } from '../data/site';
-import SiteImage from './SiteImage.astro';
 ---
 
 <section class="specialist section section--ivory" id="specialist" aria-labelledby="specialist-title">
   <div class="container specialist__inner">
-    <div class="specialist__visual reveal">
-      <SiteImage class="specialist__image" aspect="4 / 5" />
-    </div>
-
     <div class="specialist__content">
-      <p class="section-label reveal">Specialist</p>
-      <h2 class="section-title reveal reveal-delay-1" id="specialist-title">
+      <h2 class="section-title reveal" id="specialist-title">
         Жанна
       </h2>
-      <p class="specialist__role reveal reveal-delay-2">
-        Дипломированный косметолог · медицинское образование · аккредитация
+      <p class="specialist__role reveal reveal-delay-1">
+        Косметолог · медицинское образование · аккредитация
       </p>
 
-      <div class="specialist__badge reveal reveal-delay-2" aria-label={site.award}>
-        <span class="specialist__badge-year">2025</span>
-        <span class="specialist__badge-text">Лучший косметолог Курганской области</span>
-      </div>
+      <p class="specialist__award reveal reveal-delay-1">
+        {site.award}
+      </p>
 
-      <div class="gold-line reveal reveal-delay-2"></div>
-
-      <div class="specialist__text reveal reveal-delay-3">
+      <div class="specialist__text reveal reveal-delay-2">
         <p>
-          Пришла из строгой режимной медицины в косметологию — и нашла здесь
-          то, что действительно важно: творить красоту, не забывая о безопасности.
+          Я пришла в косметологию из строгой режимной медицины. Здесь
+          для меня важно то же: безопасность, чистота, внимание к деталям.
           Руководствуюсь принципом «не навреди».
         </p>
         <p>
           Лауреат премии Топ-100 успешных людей Курганской области.
-          Сейчас получаю высшее медицинско-экономическое образование и
-          постоянно прохожу дополнительное обучение в сфере косметологии.
+          Сейчас получаю высшее медицинско-экономическое образование
+          и регулярно прохожу обучение по косметологии.
+        </p>
+        <p>
+          После процедуры остаюсь на связи — можно написать, если
+          появятся вопросы.
         </p>
       </div>
 
-      <ul class="specialist__facts reveal reveal-delay-4">
-        <li>
-          <strong>Образование</strong>
-          <span>Медицинское образование, действующая аккредитация</span>
-        </li>
-        <li>
-          <strong>Подход</strong>
-          <span>Индивидуальный план, бережная тактика, естественный результат</span>
-        </li>
-        <li>
-          <strong>Развитие</strong>
-          <span>Непрерывное обучение у лучших специалистов отрасли</span>
-        </li>
-        <li>
-          <strong>Связь</strong>
-          <span>Остаюсь на связи после процедуры по всем вопросам</span>
-        </li>
-      </ul>
-
       <a
         href={site.vkMessage}
-        class="btn btn--dark reveal reveal-delay-4"
+        class="btn btn--dark reveal reveal-delay-3"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Записаться на консультацию
+        Написать в VK
       </a>
     </div>
+
+    <aside class="specialist__aside reveal reveal-delay-2" aria-label="Контактная информация">
+      <div class="specialist__address-block">
+        <p class="specialist__address-label">Студия</p>
+        <p class="specialist__address-main">{site.fullAddress}</p>
+        <p class="specialist__address-hours">{site.hours}</p>
+        <a href={`tel:${site.phone}`} class="specialist__address-phone">{site.phoneDisplay}</a>
+      </div>
+    </aside>
   </div>
 </section>
 
@@ -76,47 +61,21 @@ import SiteImage from './SiteImage.astro';
     align-items: start;
   }
 
-  .specialist__visual {
-    max-width: 480px;
-    margin-inline: auto;
-    width: 100%;
-  }
-
-  .specialist__image {
-    width: 100%;
-  }
-
   .specialist__role {
     margin-top: var(--space-sm);
-    font-size: 0.8125rem;
-    letter-spacing: 0.04em;
+    font-size: 0.875rem;
     color: var(--color-taupe);
   }
 
-  .specialist__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
+  .specialist__award {
     margin-top: var(--space-md);
-    padding: 0.75rem 1rem;
-    background: var(--color-graphite);
-    color: var(--color-ivory);
-    border: 1px solid var(--color-champagne-dim);
-  }
-
-  .specialist__badge-year {
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--color-champagne);
     font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--color-champagne);
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .specialist__badge-text {
-    font-size: 0.6875rem;
-    letter-spacing: 0.06em;
-    line-height: 1.4;
-    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--color-text-dark);
+    max-width: 28ch;
   }
 
   .specialist__text {
@@ -129,42 +88,62 @@ import SiteImage from './SiteImage.astro';
     font-size: 1.0625rem;
   }
 
-  .specialist__facts {
-    margin-block: var(--space-lg);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
+  .specialist__aside {
+    align-self: stretch;
   }
 
-  .specialist__facts li {
-    padding-left: var(--space-md);
-    border-left: 1px solid var(--color-champagne-dim);
+  .specialist__address-block {
+    padding: var(--space-xl);
+    background: var(--color-graphite);
+    color: var(--color-ivory);
+    border: 1px solid rgba(196, 176, 138, 0.2);
   }
 
-  .specialist__facts strong {
-    display: block;
+  .specialist__address-label {
     font-size: 0.6875rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-taupe);
-    margin-bottom: 0.25rem;
-    font-weight: 500;
+    color: var(--color-champagne);
+    margin-bottom: var(--space-md);
   }
 
-  .specialist__facts span {
-    font-size: 0.9375rem;
-    color: var(--color-text-dark);
+  .specialist__address-main {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.25;
+    max-width: 16ch;
+  }
+
+  .specialist__address-hours {
+    margin-top: var(--space-md);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .specialist__address-phone {
+    display: inline-block;
+    margin-top: var(--space-lg);
+    font-size: 1rem;
+    color: var(--color-champagne);
+    transition: opacity var(--transition-fast);
+  }
+
+  .specialist__address-phone:hover {
+    opacity: 0.8;
   }
 
   @media (min-width: 1024px) {
     .specialist__inner {
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: var(--space-3xl);
-      align-items: center;
+      align-items: start;
     }
 
-    .specialist__visual {
-      margin-inline: 0;
+    .specialist__address-block {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 </style>

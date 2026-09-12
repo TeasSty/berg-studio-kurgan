@@ -14,10 +14,10 @@ const year = new Date().getFullYear();
     <nav class="footer__nav" aria-label="Навигация в подвале">
       <ul>
         <li><a href="#procedures">Процедуры</a></li>
-        <li><a href="#specialist">Специалист</a></li>
+        <li><a href="#specialist">Жанна</a></li>
         <li><a href="#safety">Безопасность</a></li>
         <li><a href="#pricing">Прайс</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#faq">Вопросы</a></li>
       </ul>
     </nav>
 
@@ -32,6 +32,11 @@ const year = new Date().getFullYear();
 
   <div class="footer__bottom container">
     <p>&copy; {year} {site.name}. Все права защищены.</p>
+    {
+      site.isDraft && (
+        <p class="footer__draft">Черновая версия · фото и материалы будут добавлены</p>
+      )
+    }
     <p class="footer__legal">
       Имеются противопоказания. Необходима консультация специалиста.
     </p>
@@ -60,9 +65,8 @@ const year = new Date().getFullYear();
   }
 
   .footer__tagline {
-    font-size: 0.5625rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
     color: var(--color-champagne);
     margin-top: 0.25rem;
   }
@@ -121,6 +125,12 @@ const year = new Date().getFullYear();
     padding-top: var(--space-lg);
     font-size: 0.75rem;
     color: var(--color-taupe);
+  }
+
+  .footer__draft {
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    color: rgba(154, 146, 136, 0.7);
   }
 
   .footer__legal {

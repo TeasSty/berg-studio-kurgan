@@ -1,7 +1,7 @@
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function initReveal() {
-  const elements = document.querySelectorAll('.reveal, .gold-line');
+  const elements = document.querySelectorAll('.reveal');
   if (!elements.length) return;
 
   if (prefersReducedMotion) {
