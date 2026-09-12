@@ -1,5 +1,6 @@
 ---
 import { safetyPoints } from '../data/site';
+import SiteImage from './SiteImage.astro';
 ---
 
 <section class="safety section" id="safety" aria-labelledby="safety-title">
@@ -34,22 +35,14 @@ import { safetyPoints } from '../data/site';
       </ol>
 
       <div class="safety__visual reveal reveal-delay-2">
-        <div
-          class="safety__image image-placeholder"
-          data-label="Стерильность кабинета"
-          role="img"
-          aria-label="Кабинет BERG STUDIO — протоколы стерильности"
-        >
-          <img
-            src="/images/safety/cabinet.jpg"
-            alt="Кабинет BERG STUDIO"
-            width="520"
-            height="650"
-            loading="lazy"
-            class="safety__photo"
-            onerror="this.style.display='none'"
-          />
-        </div>
+        <SiteImage
+          src="/images/safety/cabinet.jpg"
+          alt="Кабинет BERG STUDIO — стерильность и протоколы безопасности"
+          class="safety__image"
+          width={520}
+          height={650}
+          aspect="4 / 5"
+        />
         <p class="safety__note">
           Кабинет оборудован по нормам СанПин. Все этапы дезинфекции и
           стерилизации соблюдаются без исключений.
@@ -112,15 +105,8 @@ import { safetyPoints } from '../data/site';
   }
 
   .safety__image {
-    aspect-ratio: 4 / 5;
     max-width: 400px;
     margin-inline: auto;
-  }
-
-  .safety__photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   .safety__note {

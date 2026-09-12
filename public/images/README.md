@@ -1,13 +1,13 @@
 # Фотографии BERG STUDIO
 
-Положите реальные фото в эти пути (рекомендуется WebP + JPG fallback):
+Текущие фото загружены из публичной карточки студии на [2GIS](https://2gis.ru/kurgan/firm/70000001094154019) — это реальные снимки кабинета и работ студии.
 
-| Файл | Назначение |
-|------|------------|
-| `hero/specialist.jpg` (+ `.webp`) | Hero — портрет в белом медкостюме |
-| `intro/cabinet.jpg` | Кабинет / атмосфера студии |
+| Путь | Секция |
+|------|--------|
+| `hero/specialist.jpg` | Hero |
 | `specialist/portrait.jpg` | Блок специалиста |
-| `safety/cabinet.jpg` | Блок безопасности |
-| `procedures/*.jpg` | Карточки процедур (по названию в site.ts) |
+| `intro/cabinet.jpg` | Philosophy |
+| `safety/cabinet.jpg` | Безопасность |
+| `procedures/*.jpg` | Карточки процедур |
 
-Рекомендуемый размер hero: 1280×1600 px, WebP quality 80.
+Если появятся новые фото из VK — замените файлы с теми же именами или обновите пути в `src/data/site.ts`.

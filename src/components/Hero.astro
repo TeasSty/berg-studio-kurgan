@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import SiteImage from './SiteImage.astro';
 ---
 
 <section class="hero" id="hero" aria-labelledby="hero-title">
@@ -44,27 +45,16 @@ import { site } from '../data/site';
     </div>
 
     <div class="hero__visual reveal reveal-delay-2">
-      <!-- Замените на: /images/hero/specialist.jpg — портрет в белом медкостюме -->
-      <div
-        class="hero__image image-placeholder"
-        data-label="Фото специалиста"
-        role="img"
-        aria-label="Портрет косметолога BERG STUDIO — добавьте фото в /public/images/hero/specialist.jpg"
-      >
-        <picture>
-          <source srcset="/images/hero/specialist.webp" type="image/webp" />
-          <img
-            src="/images/hero/specialist.jpg"
-            alt="Косметолог BERG STUDIO в белом медицинском костюме"
-            width="640"
-            height="800"
-            loading="eager"
-            fetchpriority="high"
-            class="hero__photo"
-            onerror="this.style.display='none'"
-          />
-        </picture>
-      </div>
+      <SiteImage
+        src="/images/hero/specialist.jpg"
+        alt="Косметолог BERG STUDIO в кабинете студии, Курган"
+        class="hero__image"
+        width={640}
+        height={800}
+        loading="eager"
+        fetchpriority="high"
+        aspect="4 / 5"
+      />
       <div class="hero__visual-frame" aria-hidden="true"></div>
     </div>
   </div>
@@ -230,15 +220,7 @@ import { site } from '../data/site';
   }
 
   .hero__image {
-    aspect-ratio: 4 / 5;
     width: 100%;
-  }
-
-  .hero__photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
   }
 
   .hero__visual-frame {
@@ -310,6 +292,11 @@ import { site } from '../data/site';
 
     .hero__meta li::after {
       display: none !important;
+    }
+
+    .hero__visual {
+      width: min(100%, 320px);
+      margin-inline: auto;
     }
   }
 </style>

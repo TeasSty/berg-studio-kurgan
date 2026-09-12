@@ -1,6 +1,16 @@
 # build output
 dist/
 .netlify/
+
+# scrape temp files
+vk_page.html
+vk_m.html
+vk_club.html
+vk_rss.xml
+2gis.html
+2gis_photos.html
+2gis_api.json
+dikidi.html
 # generated types
 .astro/
 

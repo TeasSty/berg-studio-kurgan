@@ -1,26 +1,19 @@
 ---
 import { site } from '../data/site';
+import SiteImage from './SiteImage.astro';
 ---
 
 <section class="specialist section section--ivory" id="specialist" aria-labelledby="specialist-title">
   <div class="container specialist__inner">
     <div class="specialist__visual reveal">
-      <div
-        class="specialist__image image-placeholder"
-        data-label="Портрет специалиста"
-        role="img"
-        aria-label="Жанна — косметолог BERG STUDIO"
-      >
-        <img
-          src="/images/specialist/portrait.jpg"
-          alt="Жанна — косметолог BERG STUDIO"
-          width="560"
-          height="700"
-          loading="lazy"
-          class="specialist__photo"
-          onerror="this.style.display='none'"
-        />
-      </div>
+      <SiteImage
+        src="/images/specialist/portrait.jpg"
+        alt="Жанна — косметолог BERG STUDIO"
+        class="specialist__image"
+        width={560}
+        height={700}
+        aspect="4 / 5"
+      />
       <div class="specialist__award" aria-label={site.award}>
         <span class="specialist__award-year">2025</span>
         <span class="specialist__award-text">Лучший косметолог<br />Курганской области</span>
@@ -95,14 +88,7 @@ import { site } from '../data/site';
   }
 
   .specialist__image {
-    aspect-ratio: 4 / 5;
-  }
-
-  .specialist__photo {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
   }
 
   .specialist__award {
