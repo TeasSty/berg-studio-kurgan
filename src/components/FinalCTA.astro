@@ -1,0 +1,102 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="final-cta section" id="contact" aria-labelledby="final-cta-title">
+  <div class="final-cta__bg" aria-hidden="true"></div>
+  <div class="container final-cta__inner">
+    <p class="section-label reveal">Contact</p>
+    <h2 class="final-cta__title reveal reveal-delay-1" id="final-cta-title">
+      Ваш уход начинается<br />с&nbsp;персонального подхода
+    </h2>
+    <div class="gold-line reveal reveal-delay-2"></div>
+    <p class="final-cta__text reveal reveal-delay-2">
+      Запишитесь на консультацию — обсудим ваш запрос, составим план
+      и ответим на все вопросы. Без давления и шаблонных решений.
+    </p>
+
+    <div class="final-cta__actions reveal reveal-delay-3">
+      <a href={site.vkMessage} class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+        Записаться
+      </a>
+      <a href={`tel:${site.phone}`} class="btn btn--ghost">
+        {site.phoneDisplay}
+      </a>
+    </div>
+
+    <address class="final-cta__info reveal reveal-delay-4">
+      <span>{site.fullAddress}</span>
+      <span>{site.hours}</span>
+    </address>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .final-cta__bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 70% 50% at 50% 100%,
+      rgba(196, 176, 138, 0.08) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .final-cta__inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .final-cta__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    max-width: 16ch;
+    color: var(--color-ivory);
+  }
+
+  .final-cta__text {
+    margin-top: var(--space-md);
+    max-width: 42ch;
+    color: var(--color-text-muted);
+    font-size: 1.0625rem;
+  }
+
+  .final-cta__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .final-cta__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-top: var(--space-xl);
+    font-style: normal;
+    font-size: 0.8125rem;
+    color: var(--color-taupe);
+  }
+
+  @media (min-width: 480px) {
+    .final-cta__actions {
+      flex-direction: row;
+      justify-content: center;
+      max-width: none;
+      width: auto;
+    }
+  }
+</style>

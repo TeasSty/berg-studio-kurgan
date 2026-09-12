@@ -1,0 +1,146 @@
+---
+import { safetyPoints } from '../data/site';
+---
+
+<section class="safety section" id="safety" aria-labelledby="safety-title">
+  <div class="container">
+    <div class="safety__header">
+      <p class="section-label reveal">Safety</p>
+      <h2 class="section-title reveal reveal-delay-1" id="safety-title">
+        Красота начинается<br />с&nbsp;безопасности
+      </h2>
+      <div class="gold-line reveal reveal-delay-2"></div>
+      <p class="section-lead reveal reveal-delay-2">
+        Медицинский подход — это не только результат, но и то, как организован
+        каждый этап работы с пациентом.
+      </p>
+    </div>
+
+    <div class="safety__layout">
+      <ol class="safety__list">
+        {
+          safetyPoints.map((point, i) => (
+            <li class={`safety__item reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+              <span class="safety__num" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h3 class="safety__title">{point.title}</h3>
+                <p class="safety__text">{point.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="safety__visual reveal reveal-delay-2">
+        <div
+          class="safety__image image-placeholder"
+          data-label="Стерильность кабинета"
+          role="img"
+          aria-label="Кабинет BERG STUDIO — протоколы стерильности"
+        >
+          <img
+            src="/images/safety/cabinet.jpg"
+            alt="Кабинет BERG STUDIO"
+            width="520"
+            height="650"
+            loading="lazy"
+            class="safety__photo"
+            onerror="this.style.display='none'"
+          />
+        </div>
+        <p class="safety__note">
+          Кабинет оборудован по нормам СанПин. Все этапы дезинфекции и
+          стерилизации соблюдаются без исключений.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .safety__header {
+    max-width: 640px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .safety__layout {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .safety__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid rgba(196, 176, 138, 0.15);
+  }
+
+  .safety__item {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--space-md);
+    padding-block: var(--space-lg);
+    border-bottom: 1px solid rgba(196, 176, 138, 0.15);
+  }
+
+  .safety__num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-champagne);
+    line-height: 1;
+  }
+
+  .safety__title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 400;
+    margin-bottom: 0.375rem;
+    color: var(--color-ivory);
+  }
+
+  .safety__text {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    max-width: 42ch;
+  }
+
+  .safety__visual {
+    position: relative;
+  }
+
+  .safety__image {
+    aspect-ratio: 4 / 5;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
+  .safety__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .safety__note {
+    margin-top: var(--space-md);
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--color-champagne);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    max-width: 36ch;
+  }
+
+  @media (min-width: 1024px) {
+    .safety__layout {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-3xl);
+    }
+
+    .safety__visual {
+      position: sticky;
+      top: calc(var(--header-height) + 2rem);
+    }
+  }
+</style>

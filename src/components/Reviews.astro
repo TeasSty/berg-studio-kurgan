@@ -1,0 +1,158 @@
+---
+import { reviews, site } from '../data/site';
+---
+
+<section class="reviews section section--ivory" id="reviews" aria-labelledby="reviews-title">
+  <div class="container">
+    <div class="reviews__header">
+      <div>
+        <p class="section-label reveal">Reviews</p>
+        <h2 class="section-title reveal reveal-delay-1" id="reviews-title">
+          Что говорят клиенты
+        </h2>
+        <div class="gold-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="reviews__stats reveal reveal-delay-2">
+        <div class="reviews__stat">
+          <span class="reviews__stat-value">5.0</span>
+          <span class="reviews__stat-label">рейтинг на Dikidi</span>
+        </div>
+        <div class="reviews__stat">
+          <span class="reviews__stat-value">4.7</span>
+          <span class="reviews__stat-label">рейтинг на 2GIS</span>
+        </div>
+      </div>
+    </div>
+
+    <ul class="reviews__grid">
+      {
+        reviews.map((review, i) => (
+          <li class={`reviews__card reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+            <blockquote class="reviews__quote">
+              <p>«{review.text}»</p>
+            </blockquote>
+            <footer class="reviews__footer">
+              <cite class="reviews__author">{review.name}</cite>
+              <time class="reviews__date" datetime={review.date}>{review.date}</time>
+            </footer>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="reviews__cta reveal">
+      <p class="reviews__cta-text">
+        Больше отзывов — в сообществе VK и на Dikidi.
+      </p>
+      <a href={site.vk} class="btn btn--dark" target="_blank" rel="noopener noreferrer">
+        Читать отзывы VK
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews__header {
+    display: grid;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  .reviews__stats {
+    display: flex;
+    gap: var(--space-xl);
+  }
+
+  .reviews__stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reviews__stat-value {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--color-text-dark);
+    line-height: 1;
+  }
+
+  .reviews__stat-label {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--color-taupe);
+  }
+
+  .reviews__grid {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .reviews__card {
+    padding: var(--space-lg);
+    background: var(--color-ivory-muted);
+    border: 1px solid rgba(154, 146, 136, 0.15);
+  }
+
+  .reviews__quote {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    line-height: 1.45;
+    color: var(--color-text-dark);
+  }
+
+  .reviews__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(154, 146, 136, 0.2);
+  }
+
+  .reviews__author {
+    font-style: normal;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-taupe);
+  }
+
+  .reviews__date {
+    font-size: 0.75rem;
+    color: var(--color-taupe);
+  }
+
+  .reviews__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid rgba(154, 146, 136, 0.2);
+  }
+
+  .reviews__cta-text {
+    font-size: 0.9375rem;
+    color: var(--color-text-dark-muted);
+  }
+
+  @media (min-width: 768px) {
+    .reviews__header {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+
+    .reviews__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .reviews__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .reviews__card:nth-child(1) {
+      grid-column: span 2;
+    }
+  }
+</style>

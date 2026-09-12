@@ -1,0 +1,102 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileStickyCTA from '../components/MobileStickyCTA.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${site.name} — эстетическая косметология в ${site.city}`,
+  description = site.description,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.url).href;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0E0E10" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{title}</title>
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BeautySalon',
+      name: `${site.name} COSMETOLOGY`,
+      description: site.description,
+      url: site.url,
+      telephone: site.phone,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: site.address,
+        addressLocality: site.city,
+        addressCountry: 'RU',
+      },
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '08:00',
+        closes: '21:00',
+      },
+      sameAs: [site.vk],
+      priceRange: '₽₽',
+    })} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <MobileStickyCTA />
+    <script src="../scripts/main.ts"></script>
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.75rem 1rem;
+    background: var(--color-champagne);
+    color: var(--color-graphite);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+</style>

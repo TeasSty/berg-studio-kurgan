@@ -1,0 +1,126 @@
+---
+import { pricingCategories, site } from '../data/site';
+---
+
+<section class="pricing section" id="pricing" aria-labelledby="pricing-title">
+  <div class="container container--narrow">
+    <p class="section-label reveal">Pricing</p>
+    <h2 class="section-title reveal reveal-delay-1" id="pricing-title">
+      Прайс
+    </h2>
+    <div class="gold-line reveal reveal-delay-2"></div>
+    <p class="section-lead reveal reveal-delay-2">
+      Окончательная стоимость зависит от зоны, препарата и индивидуального
+      плана. Точную цену уточняем на консультации.
+    </p>
+
+    <div class="pricing__categories">
+      {
+        pricingCategories.map((category, ci) => (
+          <div class={`pricing__category reveal reveal-delay-${Math.min(ci + 1, 4)}`}>
+            <h3 class="pricing__category-name">{category.name}</h3>
+            <ul class="pricing__list">
+              {category.items.map((item) => (
+                <li class="pricing__item">
+                  <span class="pricing__name">{item.name}</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">{item.price}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="pricing__note reveal">
+      Цены указаны на основе открытых данных VK и Dikidi. Актуальную стоимость
+      уточняйте при записи.
+    </p>
+
+    <a
+      href={site.vkMessage}
+      class="btn btn--primary reveal"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Уточнить стоимость и записаться
+    </a>
+  </div>
+</section>
+
+<style>
+  .pricing__categories {
+    margin-top: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .pricing__category-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-ivory);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid rgba(196, 176, 138, 0.2);
+  }
+
+  .pricing__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pricing__item {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid rgba(196, 176, 138, 0.08);
+  }
+
+  .pricing__name {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+  }
+
+  .pricing__dots {
+    flex: 1;
+    min-width: 1rem;
+    border-bottom: 1px dotted rgba(196, 176, 138, 0.25);
+    align-self: end;
+    margin-bottom: 0.3em;
+  }
+
+  .pricing__price {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-champagne);
+    white-space: nowrap;
+  }
+
+  .pricing__note {
+    margin-top: var(--space-lg);
+    font-size: 0.8125rem;
+    color: var(--color-taupe);
+    max-width: 48ch;
+  }
+
+  .pricing .btn {
+    margin-top: var(--space-lg);
+  }
+
+  @media (max-width: 480px) {
+    .pricing__item {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .pricing__dots {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,229 @@
+---
+import { site, navLinks } from '../data/site';
+---
+
+<header class="header" id="header">
+  <div class="header__inner container">
+    <a href="#" class="header__logo" aria-label={`${site.name} — на главную`}>
+      <span class="header__logo-main">{site.name}</span>
+      <span class="header__logo-sub">{site.tagline}</span>
+    </a>
+
+    <nav class="header__nav" aria-label="Основная навигация">
+      <ul class="header__nav-list">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="header__nav-link">{link.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a href={`tel:${site.phone}`} class="header__phone">{site.phoneDisplay}</a>
+      <a href={site.vkMessage} class="btn btn--primary header__cta" target="_blank" rel="noopener noreferrer">
+        Записаться
+      </a>
+      <button
+        type="button"
+        class="header__burger"
+        aria-label="Открыть меню"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        id="menu-toggle"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Мобильное меню" hidden>
+    <ul class="mobile-menu__list">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a href={link.href} class="mobile-menu__link">{link.label}</a>
+          </li>
+        ))
+      }
+      <li>
+        <a href={`tel:${site.phone}`} class="mobile-menu__link mobile-menu__link--phone">
+          {site.phoneDisplay}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 100;
+    height: var(--header-height);
+    background: rgba(14, 14, 16, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196, 176, 138, 0.08);
+    transition: background var(--transition-fast);
+  }
+
+  .header.is-scrolled {
+    background: rgba(14, 14, 16, 0.96);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: var(--space-md);
+  }
+
+  .header__logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .header__logo-main {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    letter-spacing: 0.12em;
+    color: var(--color-ivory);
+  }
+
+  .header__logo-sub {
+    font-size: 0.5625rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-champagne);
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .header__nav-list {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .header__nav-link {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .header__nav-link:hover,
+  .header__nav-link.is-active {
+    color: var(--color-champagne);
+  }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .header__phone {
+    display: none;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .header__phone:hover {
+    color: var(--color-champagne);
+  }
+
+  .header__cta {
+    display: none;
+    padding-inline: 1.25rem;
+    font-size: 0.6875rem;
+  }
+
+  .header__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+  }
+
+  .header__burger span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--color-ivory);
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  .header__burger[aria-expanded='true'] span:first-child {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+
+  .header__burger[aria-expanded='true'] span:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: var(--header-height) 0 0;
+    background: var(--color-graphite);
+    padding: var(--space-lg) var(--space-md);
+    overflow-y: auto;
+    border-top: 1px solid rgba(196, 176, 138, 0.08);
+  }
+
+  .mobile-menu[hidden] {
+    display: none;
+  }
+
+  .mobile-menu__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mobile-menu__link {
+    display: block;
+    padding: 1rem 0;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--color-ivory);
+    border-bottom: 1px solid rgba(196, 176, 138, 0.1);
+  }
+
+  .mobile-menu__link--phone {
+    margin-top: var(--space-md);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-champagne);
+    border-bottom: none;
+  }
+
+  @media (min-width: 1024px) {
+    .header__nav {
+      display: block;
+    }
+
+    .header__phone {
+      display: block;
+    }
+
+    .header__cta {
+      display: inline-flex;
+    }
+
+    .header__burger {
+      display: none;
+    }
+  }
+</style>

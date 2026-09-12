@@ -1,0 +1,136 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <p class="footer__logo">{site.name}</p>
+      <p class="footer__tagline">{site.tagline}</p>
+      <p class="footer__city">{site.city}</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Навигация в подвале">
+      <ul>
+        <li><a href="#procedures">Процедуры</a></li>
+        <li><a href="#specialist">Специалист</a></li>
+        <li><a href="#safety">Безопасность</a></li>
+        <li><a href="#pricing">Прайс</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer__contact">
+      <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+      <a href={site.vk} target="_blank" rel="noopener noreferrer">VK</a>
+      <a href={site.vkMessage} target="_blank" rel="noopener noreferrer">Записаться</a>
+      <p class="footer__address">{site.fullAddress}</p>
+      <p class="footer__hours">{site.hours}</p>
+    </div>
+  </div>
+
+  <div class="footer__bottom container">
+    <p>&copy; {year} {site.name}. Все права защищены.</p>
+    <p class="footer__legal">
+      Имеются противопоказания. Необходима консультация специалиста.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: var(--space-xl) var(--space-lg);
+    background: var(--color-graphite-soft);
+    border-top: 1px solid rgba(196, 176, 138, 0.08);
+  }
+
+  .footer__inner {
+    display: grid;
+    gap: var(--space-xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid rgba(196, 176, 138, 0.08);
+  }
+
+  .footer__logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    color: var(--color-ivory);
+  }
+
+  .footer__tagline {
+    font-size: 0.5625rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-champagne);
+    margin-top: 0.25rem;
+  }
+
+  .footer__city {
+    margin-top: var(--space-sm);
+    font-size: 0.8125rem;
+    color: var(--color-taupe);
+  }
+
+  .footer__nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer__nav a {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .footer__nav a:hover {
+    color: var(--color-champagne);
+  }
+
+  .footer__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .footer__contact a {
+    font-size: 0.875rem;
+    color: var(--color-ivory);
+    transition: color var(--transition-fast);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer__contact a:hover {
+    color: var(--color-champagne);
+  }
+
+  .footer__address,
+  .footer__hours {
+    font-size: 0.8125rem;
+    color: var(--color-taupe);
+  }
+
+  .footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: var(--space-lg);
+    font-size: 0.75rem;
+    color: var(--color-taupe);
+  }
+
+  .footer__legal {
+    max-width: 40ch;
+    opacity: 0.8;
+  }
+
+  @media (min-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+</style>

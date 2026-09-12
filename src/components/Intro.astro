@@ -1,0 +1,97 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="intro section section--ivory" id="intro" aria-labelledby="intro-title">
+  <div class="container intro__inner">
+    <div class="intro__content">
+      <p class="section-label reveal">Philosophy</p>
+      <h2 class="section-title reveal reveal-delay-1" id="intro-title">
+        Красота начинается с&nbsp;профессионального подхода
+      </h2>
+      <div class="gold-line reveal reveal-delay-2"></div>
+      <p class="intro__text reveal reveal-delay-3">
+        BERG STUDIO — это не набор процедур из прайса. Это персональная практика,
+        где медицинское образование, стерильность и внимание к деталям стоят на
+        первом месте.
+      </p>
+      <p class="intro__text reveal reveal-delay-3">
+        Я работаю с запросом «выглядеть естественно» — без перекоррекции,
+        без шаблонных решений. Каждый план составляется индивидуально после
+        консультации и оценки состояния кожи.
+      </p>
+      <p class="intro__signature reveal reveal-delay-4">
+        — Жанна, косметолог {site.name}
+      </p>
+    </div>
+
+    <div class="intro__visual reveal reveal-delay-2">
+      <div
+        class="intro__image image-placeholder"
+        data-label="Фото кабинета"
+        role="img"
+        aria-label="Интерьер кабинета BERG STUDIO"
+      >
+        <img
+          src="/images/intro/cabinet.jpg"
+          alt="Кабинет BERG STUDIO"
+          width="600"
+          height="750"
+          loading="lazy"
+          class="intro__photo"
+          onerror="this.style.display='none'"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro__inner {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .intro__text {
+    margin-top: var(--space-md);
+    max-width: 48ch;
+    color: var(--color-text-dark-muted);
+    font-size: 1.0625rem;
+  }
+
+  .intro__signature {
+    margin-top: var(--space-lg);
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--color-taupe);
+  }
+
+  .intro__visual {
+    position: relative;
+  }
+
+  .intro__image {
+    aspect-ratio: 4 / 5;
+    max-width: 440px;
+    margin-inline: auto;
+  }
+
+  .intro__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 1024px) {
+    .intro__inner {
+      grid-template-columns: 1fr 0.75fr;
+      gap: var(--space-3xl);
+    }
+
+    .intro__visual {
+      justify-self: end;
+    }
+  }
+</style>

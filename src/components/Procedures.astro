@@ -1,0 +1,209 @@
+---
+import { procedures, site } from '../data/site';
+---
+
+<section class="procedures section" id="procedures" aria-labelledby="procedures-title">
+  <div class="container">
+    <div class="procedures__header">
+      <div>
+        <p class="section-label reveal">Procedures</p>
+        <h2 class="section-title reveal reveal-delay-1" id="procedures-title">
+          Процедуры
+        </h2>
+        <div class="gold-line reveal reveal-delay-2"></div>
+      </div>
+      <p class="procedures__lead reveal reveal-delay-2">
+        Каждая методика подбирается индивидуально — с учётом вашего возраста,
+        типа кожи и желаемого результата.
+      </p>
+    </div>
+
+    <ul class="procedures__grid">
+      {
+        procedures.map((item, i) => (
+          <li class={`procedures__card procedures__card--${item.size} reveal reveal-delay-${Math.min((i % 4) + 1, 4)}`}>
+            <a href={site.vkMessage} class="procedures__link" target="_blank" rel="noopener noreferrer">
+              <div
+                class="procedures__image image-placeholder"
+                data-label={item.title}
+              >
+                <img
+                  src={item.image}
+                  alt=""
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  class="procedures__photo"
+                  onerror="this.style.display='none'"
+                />
+              </div>
+              <div class="procedures__body">
+                <h3 class="procedures__title">{item.title}</h3>
+                <p class="procedures__desc">{item.description}</p>
+                <div class="procedures__footer">
+                  <span class="procedures__price">{item.price}</span>
+                  <span class="procedures__arrow" aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .procedures__header {
+    display: grid;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  .procedures__lead {
+    max-width: 36ch;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    align-self: end;
+  }
+
+  .procedures__grid {
+    display: grid;
+    gap: 1px;
+    background: rgba(196, 176, 138, 0.1);
+  }
+
+  .procedures__card {
+    background: var(--color-graphite-soft);
+    overflow: hidden;
+  }
+
+  .procedures__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: background var(--transition-fast);
+  }
+
+  .procedures__link:hover {
+    background: rgba(26, 26, 28, 0.8);
+  }
+
+  .procedures__link:hover .procedures__photo {
+    transform: scale(1.03);
+  }
+
+  .procedures__link:hover .procedures__arrow {
+    transform: translateX(4px);
+    color: var(--color-champagne);
+  }
+
+  .procedures__image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .procedures__card--large .procedures__image {
+    aspect-ratio: 16 / 11;
+  }
+
+  .procedures__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .procedures__body {
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .procedures__title {
+    font-family: var(--font-display);
+    font-size: 1.625rem;
+    font-weight: 400;
+    margin-bottom: var(--space-xs);
+    color: var(--color-ivory);
+  }
+
+  .procedures__desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    flex: 1;
+    max-width: 40ch;
+  }
+
+  .procedures__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(196, 176, 138, 0.12);
+  }
+
+  .procedures__price {
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    color: var(--color-champagne);
+  }
+
+  .procedures__arrow {
+    font-size: 1.25rem;
+    color: var(--color-taupe);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  @media (min-width: 768px) {
+    .procedures__header {
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+    }
+
+    .procedures__grid {
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: minmax(280px, auto);
+    }
+
+    .procedures__card--large {
+      grid-column: span 3;
+    }
+
+    .procedures__card--medium {
+      grid-column: span 2;
+    }
+
+    .procedures__card--small {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .procedures__card--large {
+      grid-column: span 4;
+      grid-row: span 2;
+    }
+
+    .procedures__card--large .procedures__image {
+      aspect-ratio: auto;
+      flex: 1;
+      min-height: 240px;
+    }
+
+    .procedures__card--large .procedures__link {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+    }
+
+    .procedures__card--medium {
+      grid-column: span 2;
+    }
+
+    .procedures__card--small {
+      grid-column: span 2;
+    }
+  }
+</style>
